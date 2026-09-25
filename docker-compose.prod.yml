@@ -1,0 +1,20 @@
+services:
+  sloggett:
+    image: ghcr.io/sebakatzman/sloggett:latest
+    container_name: sloggett-web
+    restart: unless-stopped
+    # El servidor tiene ~1 GB de RAM compartido con Yaghan.
+    mem_limit: 320m
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - proxy
+
+networks:
+  # Red del nginx de Yaghan, que hace de proxy público para ambos sitios.
+  proxy:
+    name: yaghanhostel_yaghanhostel_net
+    external: true

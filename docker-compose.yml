@@ -1,7 +1,7 @@
 services:
   sloggett:
     build: .
-    image: ghcr.io/sebakatzman/sloggett:latest
+    image: sloggett-web
     container_name: sloggett-web
     restart: unless-stopped
     # Solo accesible desde el propio servidor; nginx hace de proxy público.
