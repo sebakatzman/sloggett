@@ -1,0 +1,9 @@
+services:
+  sloggett:
+    build: .
+    image: sloggett-web
+    container_name: sloggett-web
+    restart: unless-stopped
+    # Solo accesible desde el propio servidor; nginx hace de proxy público.
+    ports:
+      - "127.0.0.1:3010:3000"
