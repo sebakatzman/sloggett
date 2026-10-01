@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { rooms } from "@/lib/rooms";
-import { site, whatsappLink } from "@/lib/site";
+import { whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "@/components/Icon";
 import { Photo } from "@/components/Photo";
 
 const highlights: { icon: IconName; title: string; text: string }[] = [
   { icon: "mountain", title: "Vista al canal", text: "Beagle y cordillera desde la casa" },
-  { icon: "coffee", title: "Desayuno casero", text: "Incluido en todas las tarifas" },
+  { icon: "coffee", title: "Desayuno continental", text: "Incluido en todas las tarifas" },
   { icon: "pin", title: "A pasos del centro", text: "Caminando a la calle San Martín" },
-  { icon: "users", title: "Para familias", text: "Habitaciones de hasta 4 personas" },
+  { icon: "clock", title: "Reserva online", text: "Disponibilidad en tiempo real" },
 ];
 
 const seasons = [
@@ -39,10 +39,25 @@ const seasons = [
 ];
 
 const familyPoints = [
-  "Habitación familiar para 2 adultos y 2 chicos",
-  "Cuna disponible a pedido, sin cargo",
-  "Desayuno pensado también para los más chicos",
+  "Dos habitaciones combinadas en una misma reserva",
+  "Bebés menores de 2 años sin cargo",
+  "Desayuno continental incluido para todos",
   "Te ayudamos a armar salidas aptas para toda la familia",
+];
+
+const reviews = [
+  {
+    text: "¡Hermosísimo lugar! La ubicación es excelente, a pocas cuadras del centro, y las habitaciones son muy cómodas. Buenísimo el desayuno, con una vista única. La próxima vez que visite Ushuaia, ya sé dónde me voy a quedar.",
+    caption: "Huésped de la hostería",
+  },
+  {
+    text: "Excelentes habitaciones a un precio accesible para lo que es Ushuaia. El dueño es muy atento y amable. Viajando sola me sentí muy cómoda.",
+    caption: "Huésped · Viajó sola",
+  },
+  {
+    text: "¡Muchas gracias, Andrés, por tu atención! Limpieza 10 puntos, un lugar muy bien ubicado, seguro y tranquilo. Desayuno abundante. Pasamos tres días excelentes, muy recomendable.",
+    caption: "Huésped · Estadía de tres días",
+  },
 ];
 
 export default function Home() {
@@ -61,8 +76,7 @@ export default function Home() {
             Vistas al canal de Beagle, al fin del mundo
           </h1>
           <p className="max-w-[560px] text-lg leading-[1.55] text-cream/90 lg:text-xl">
-            Siete habitaciones privadas con desayuno casero, a pasos del centro de Ushuaia. Ahora
-            también pensada para familias.
+            Siete habitaciones privadas con desayuno continental, a pasos del centro de Ushuaia.
           </p>
           <div className="flex flex-wrap gap-3.5">
             <Link href="/reservar" className="btn btn-gold">
@@ -81,25 +95,23 @@ export default function Home() {
           >
             <label className="field">
               Llegada
-              <input className="inp" type="date" name="llegada" />
+              <input className="inp" type="date" name="llegada" required />
             </label>
             <label className="field">
               Salida
-              <input className="inp" type="date" name="salida" />
+              <input className="inp" type="date" name="salida" required />
             </label>
             <label className="field">
               Huéspedes
-              <select className="inp" name="huespedes" defaultValue="2-0">
-                <option value="1-0">1 adulto</option>
-                <option value="2-0">2 adultos</option>
-                <option value="2-1">2 adultos · 1 niño</option>
-                <option value="2-2">2 adultos · 2 niños</option>
-                <option value="3-0">3 adultos</option>
-                <option value="4-0">4 adultos</option>
+              <select className="inp" name="huespedes" defaultValue="2-0-0">
+                <option value="1-0-0">1 adulto</option>
+                <option value="2-0-0">2 adultos</option>
+                <option value="1-1-0">1 adulto · 1 niño</option>
+                <option value="2-0-1">2 adultos · 1 bebé</option>
               </select>
             </label>
             <button type="submit" className="btn btn-navy">
-              Consultar disponibilidad <Icon name="arrow" />
+              Ver disponibilidad <Icon name="arrow" />
             </button>
           </form>
         </div>
@@ -135,8 +147,8 @@ export default function Home() {
           </p>
           <p className="text-lg leading-[1.7] text-muted">
             Hoy vuelve a abrir con una gestión nueva y cercana. Mantenemos lo que siempre funcionó
-            —la ubicación, el desayuno casero, el trato cálido— y sumamos habitaciones pensadas para
-            familias.
+            —la ubicación, el desayuno, el trato cálido— y sumamos la reserva online para que elijas
+            tu habitación con disponibilidad en tiempo real.
           </p>
           <Link href="/habitaciones" className="link-underline mt-2">
             Conocé las habitaciones <Icon name="arrow" />
@@ -154,7 +166,7 @@ export default function Home() {
       {/* Desayuno */}
       <section className="container-x pb-20 lg:pb-28">
         <div className="mb-10 flex flex-col gap-3.5">
-          <span className="kicker">Desayuno casero</span>
+          <span className="kicker">Desayuno continental</span>
           <h2 className="h-display text-4xl lg:text-[44px]">Empezá el día mirando el canal</h2>
           <p className="max-w-xl text-lg text-muted">
             Pan, dulces, fruta, yogur con granola, fiambres y café caliente, todas las mañanas en el
@@ -178,7 +190,7 @@ export default function Home() {
               <span className="kicker">Habitaciones</span>
               <h2 className="h-display text-4xl lg:text-[44px]">Tres formas de alojarse</h2>
               <p className="max-w-xl text-lg text-muted">
-                Todas con baño privado, calefacción y desayuno incluido.
+                Dobles, twins y suite. Todas con baño privado, calefacción y desayuno incluido.
               </p>
             </div>
             <Link href="/habitaciones" className="btn btn-outline self-start md:self-auto">
@@ -192,7 +204,7 @@ export default function Home() {
                 <Photo label={room.photos[0].label} src={room.photos[0].src} rounded={false} className="h-60" sizes="(min-width: 768px) 33vw, 100vw" />
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="h-display text-2xl">{room.name.replace("Habitación ", "")}</h3>
+                    <h3 className="h-display text-2xl">{room.shortName}</h3>
                     <span className="text-sm text-muted">{room.guests}</span>
                   </div>
                   <p className="text-[15px] leading-relaxed text-muted">{room.summary}</p>
@@ -204,14 +216,12 @@ export default function Home() {
                       <Icon name="coffee" className="text-gold-dark" /> Desayuno incluido
                     </li>
                   </ul>
-                  <div className="mt-auto flex items-end justify-between border-t border-line pt-4">
-                    <p className="text-sm text-muted">
-                      desde
-                      <span className="block font-serif text-2xl font-medium text-ink">USD {room.price}</span>
-                      por noche
-                    </p>
-                    <Link href={`/habitaciones#${room.slug}`} className="btn btn-navy h-11 px-5">
+                  <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-4">
+                    <Link href={`/habitaciones#${room.slug}`} className="link-underline text-sm">
                       Ver más
+                    </Link>
+                    <Link href="/reservar" className="btn btn-navy h-11 px-5">
+                      Ver tarifas
                     </Link>
                   </div>
                 </div>
@@ -259,15 +269,20 @@ export default function Home() {
       <section className="container-x pb-20 lg:pb-28">
         <div className="grid items-center gap-10 rounded-xl bg-gold p-8 sm:p-12 lg:grid-cols-2 lg:p-16">
           <div className="flex flex-col gap-4">
-            <span className="text-[13px] font-semibold tracking-[.18em] text-ink/70 uppercase">Novedad</span>
-            <h2 className="h-display text-4xl lg:text-5xl">Ahora, también para familias</h2>
+            <span className="text-[13px] font-semibold tracking-[.18em] text-ink/70 uppercase">Familias y grupos</span>
+            <h2 className="h-display text-4xl lg:text-5xl">¿Viajan en familia?</h2>
             <p className="text-lg leading-relaxed text-ink/80">
-              Sumamos habitaciones amplias para que viajen juntos, con todo lo necesario para los
-              chicos y la tranquilidad de una casa chica.
+              Pueden alojarse combinando dos habitaciones en una misma reserva, con la tranquilidad de
+              una casa chica y a pasos del centro.
             </p>
-            <Link href="/habitaciones#familiar" className="btn btn-navy mt-2 self-start">
-              Ver habitación familiar <Icon name="arrow" />
-            </Link>
+            <div className="mt-2 flex flex-wrap gap-3">
+              <Link href="/reservar" className="btn btn-navy">
+                Ver disponibilidad <Icon name="arrow" />
+              </Link>
+              <a href={whatsappLink("Hola! Viajamos en familia y queríamos consultar por habitaciones.")} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+                <Icon name="chat" /> Consultar
+              </a>
+            </div>
           </div>
           <ul className="flex flex-col gap-4">
             {familyPoints.map((p) => (
@@ -285,29 +300,20 @@ export default function Home() {
       {/* Reseñas */}
       <section className="bg-white py-20 lg:py-28">
         <div className="container-x">
-          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div className="flex flex-col gap-3.5">
-              <span className="kicker">Reseñas</span>
-              <h2 className="h-display text-4xl lg:text-[44px]">Lo que dicen quienes se quedaron</h2>
-            </div>
-            <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer" className="link-underline">
-              Ver todas en Booking <Icon name="arrow" />
-            </a>
+          <div className="mb-12 flex flex-col gap-3.5">
+            <span className="kicker">Reseñas</span>
+            <h2 className="h-display text-4xl lg:text-[44px]">Lo que dicen quienes se quedaron</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <figure key={n} className="card flex flex-col gap-5 bg-cream p-7">
+            {reviews.map((r) => (
+              <figure key={r.caption} className="card flex flex-col gap-5 bg-cream p-7">
                 <div className="flex gap-1 text-gold">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Icon key={i} name="star" size={16} className="fill-current" />
                   ))}
                 </div>
-                <blockquote className="font-serif text-lg leading-relaxed text-ink">
-                  «Acá va una reseña real de un huésped, tomada de Booking o Google.»
-                </blockquote>
-                <figcaption className="mt-auto text-sm text-muted">
-                  Nombre del huésped · País · Booking
-                </figcaption>
+                <blockquote className="font-serif text-lg leading-relaxed text-ink">«{r.text}»</blockquote>
+                <figcaption className="mt-auto text-sm text-muted">{r.caption}</figcaption>
               </figure>
             ))}
           </div>
@@ -325,8 +331,8 @@ export default function Home() {
               La mejor tarifa, sin intermediarios
             </h2>
             <p className="max-w-lg text-lg leading-relaxed text-cream/80">
-              Reservando directo con nosotros pagás menos que en las plataformas y hablás con quien
-              te va a recibir.
+              Reservando directo con nosotros ves la disponibilidad real, confirmás con una seña de una
+              noche y hablás con quien te va a recibir.
             </p>
             <div className="mt-2 flex flex-wrap gap-3.5">
               <Link href="/reservar" className="btn btn-gold">

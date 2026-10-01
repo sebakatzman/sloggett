@@ -13,7 +13,7 @@ const channels: { icon: IconName; label: string; value: string; href?: string }[
   { icon: "chat", label: "WhatsApp", value: site.phoneDisplay, href: whatsappLink() },
   { icon: "mail", label: "Email", value: site.email, href: `mailto:${site.email}` },
   { icon: "instagram", label: "Instagram", value: `@${site.instagram}`, href: `https://instagram.com/${site.instagram}` },
-  { icon: "clock", label: "Recepción", value: "Todos los días de 8:00 a 22:00" },
+  { icon: "clock", label: "Check-in", value: "De 14 a 24 h, con código de acceso" },
 ];
 
 const faqs = [
@@ -23,19 +23,27 @@ const faqs = [
   },
   {
     q: "¿El desayuno está incluido?",
-    a: "Sí, todas las tarifas incluyen desayuno casero, servido todas las mañanas en el desayunador con vista al canal.",
+    a: "Sí, todas las tarifas incluyen desayuno continental, servido todos los días de 7:30 a 10:30 en el desayunador.",
+  },
+  {
+    q: "¿Cómo es el check-in?",
+    a: "El ingreso es de 14 a 24 h, de forma automática con códigos que te enviamos antes de tu llegada. El check-out es hasta las 11 h. Otros horarios se coordinan previamente, sujetos a disponibilidad.",
   },
   {
     q: "¿Pueden alojarse chicos?",
-    a: "Sí. Tenemos una habitación familiar para hasta 4 personas y cuna disponible a pedido.",
+    a: "Sí. Los bebés menores de 2 años no pagan y duermen con sus padres; desde los 2 años abonan como adultos. Las familias pueden alojarse combinando dos habitaciones en una misma reserva.",
+  },
+  {
+    q: "¿Cómo se paga la reserva?",
+    a: "La reserva se confirma con el pago de una noche en concepto de seña. El saldo de la estadía se abona al momento del ingreso.",
   },
   {
     q: "¿Cuál es la política de cancelación?",
-    a: "Podés cancelar sin cargo hasta 7 días antes de la llegada. Pasado ese plazo se cobra la primera noche.",
+    a: "Podés cancelar sin cargo hasta 10 días antes de la llegada, con devolución total de la seña. Si se cancela dentro de los 10 días previos o no te presentás, se pierde la seña. Las cancelaciones deben avisarse por escrito.",
   },
   {
-    q: "¿Qué medios de pago aceptan?",
-    a: "Transferencia bancaria, efectivo (pesos o dólares) y tarjetas de crédito y débito.",
+    q: "¿Se aceptan mascotas? ¿Se puede fumar?",
+    a: "No se aceptan mascotas y no se permite fumar en la hostería.",
   },
 ];
 

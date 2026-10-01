@@ -1,78 +1,83 @@
-export type RoomSlug = "doble" | "triple" | "familiar";
+export type RoomSlug = "doble" | "twin" | "suite";
 
+// Categorías agrupadas a partir de las habitaciones cargadas en MiniHotel.
+// Precios y disponibilidad se muestran solo en el motor de reservas.
 export type Room = {
   slug: RoomSlug;
   name: string;
+  shortName: string;
   guests: string;
   maxGuests: number;
   beds: string;
+  options: string[];
   summary: string;
   description: string;
   features: string[];
-  // TODO: precios de ejemplo, reemplazar por las tarifas reales
-  price: number;
   photos: { label: string; src?: string }[];
 };
 
-const common = ["Baño privado", "Desayuno casero incluido", "Wi-Fi", "Calefacción central"];
+const common = ["Baño privado", "Desayuno continental incluido", "Wi-Fi", "Calefacción central"];
 
 export const rooms: Room[] = [
   {
     slug: "doble",
     name: "Habitación doble",
+    shortName: "Doble",
     guests: "Hasta 2 personas",
     maxGuests: 2,
-    beds: "Cama matrimonial o dos individuales",
-    summary: "Ideal para parejas o dos amigos que viajan juntos.",
+    beds: "Cama matrimonial",
+    options: ["Standard", "Vista a las montañas", "Vista al canal"],
+    summary: "Para parejas, con vista a las montañas o al canal de Beagle.",
     description:
-      "Para parejas o dos viajeros. Cama matrimonial o dos individuales, baño privado y vista a la ciudad o a la montaña.",
+      "Pensada para parejas. Cama matrimonial, baño privado y, según la habitación, vista a las montañas o al canal de Beagle.",
     features: [...common, "Ropa blanca y toallas", "TV"],
-    price: 80,
     photos: [
-      { label: "Habitación doble con cama matrimonial", src: "/images/habdobleysimple2.jpeg" },
-      { label: "Habitación doble con dos camas", src: "/images/hab1.jpeg" },
+      { label: "Habitación doble con cama matrimonial", src: "/images/habdobleysimple.jpeg" },
       { label: "Baño privado", src: "/images/baño.jpeg" },
-    ],
-  },
-  {
-    slug: "triple",
-    name: "Habitación triple",
-    guests: "Hasta 3 personas",
-    maxGuests: 3,
-    beds: "Matrimonial + individual o tres individuales",
-    summary: "Para grupos chicos o una pareja con un hijo.",
-    description:
-      "Para grupos de amigos o una pareja con un hijo. Tres camas individuales o una matrimonial más una individual.",
-    features: [...common, "Ropa blanca y toallas", "Placard amplio"],
-    price: 100,
-    photos: [
-      { label: "Habitación triple", src: "/images/hab2.jpeg" },
-      { label: "Habitación triple, matrimonial e individual", src: "/images/habdobleysimple.jpeg" },
       { label: "Toallas y amenities", src: "/images/toallajabon.jpeg" },
     ],
   },
   {
-    slug: "familiar",
-    name: "Habitación familiar",
-    guests: "Hasta 4 personas",
-    maxGuests: 4,
-    beds: "Matrimonial + dos individuales",
-    summary: "Nueva: espacio para toda la familia, con lugar para cuna.",
+    slug: "twin",
+    name: "Habitación twin",
+    shortName: "Twin",
+    guests: "Hasta 2 personas",
+    maxGuests: 2,
+    beds: "Dos camas individuales",
+    options: ["Vista a las montañas", "Vista al canal"],
+    summary: "Dos camas individuales, ideal para amigos o compañeros de viaje.",
     description:
-      "Nuestra propuesta nueva. Espacio para dos adultos y dos chicos, con cama matrimonial, dos individuales y lugar para cuna.",
-    features: [...common, "Cuna a pedido", "Espacio extra para equipaje"],
-    price: 130,
+      "Para dos viajeros que prefieren camas separadas. Dos camas individuales, baño privado y vista a las montañas o al canal.",
+    features: [...common, "Ropa blanca y toallas", "Caja de seguridad"],
     photos: [
-      { label: "Habitación familiar", src: "/images/hab4.jpeg" },
-      { label: "Caja fuerte en la habitación", src: "/images/cajafuerte.jpeg" },
-      { label: "Baño de la habitación familiar", src: "/images/bañovertical.jpeg" },
+      { label: "Habitación twin con dos camas", src: "/images/hab1.jpeg" },
+      { label: "Habitación twin", src: "/images/hab4.jpeg" },
+      { label: "Caja de seguridad en la habitación", src: "/images/cajafuerte.jpeg" },
+    ],
+  },
+  {
+    slug: "suite",
+    name: "Suite",
+    shortName: "Suite",
+    guests: "Hasta 2 personas",
+    maxGuests: 2,
+    beds: "Cama matrimonial",
+    options: [],
+    summary: "Nuestra categoría superior, para una estadía especial.",
+    description:
+      "La categoría superior de la hostería: cama matrimonial, baño privado y todo el confort para una estadía especial en Ushuaia.",
+    features: [...common, "Ropa blanca y toallas", "TV"],
+    photos: [
+      { label: "Suite con cama matrimonial", src: "/images/habdobleysimple2.jpeg" },
+      { label: "Suite", src: "/images/hab2.jpeg" },
+      { label: "Baño de la suite", src: "/images/bañovertical.jpeg" },
     ],
   },
 ];
 
 export const houseRules = [
-  { title: "Check-in / Check-out", text: "Ingreso desde las 14:00 · Salida hasta las 10:00" },
-  { title: "Desayuno", text: "Casero, todos los días de 7:30 a 10:30" },
-  { title: "Cancelación", text: "Sin cargo hasta 7 días antes de la llegada" },
-  { title: "Estacionamiento", text: "Lugar en la calle, frente a la hostería" },
+  { title: "Check-in / Check-out", text: "Ingreso de 14 a 24 h con código de acceso · Salida hasta las 11 h" },
+  { title: "Desayuno continental", text: "Incluido, todos los días de 7:30 a 10:30" },
+  { title: "Reserva y cancelación", text: "Se confirma con una seña de una noche. Cancelación sin cargo hasta 10 días antes" },
+  { title: "Menores", text: "Bebés menores de 2 años sin cargo. Desde los 2 años abonan como adultos" },
 ];

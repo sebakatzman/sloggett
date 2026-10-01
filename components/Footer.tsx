@@ -10,7 +10,7 @@ export function Footer() {
         <div className="flex flex-col gap-5">
           <Logo />
           <p className="max-w-xs text-[15px] leading-relaxed text-cream/70">
-            Siete habitaciones privadas con desayuno casero y vista al canal de Beagle, a pasos del
+            Siete habitaciones privadas con desayuno continental y vista al canal de Beagle, a pasos del
             centro de Ushuaia.
           </p>
         </div>

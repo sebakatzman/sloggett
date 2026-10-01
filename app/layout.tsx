@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Hostería Sloggett",
   },
   description:
-    "Siete habitaciones privadas con desayuno casero y vista al canal de Beagle, a pasos del centro de Ushuaia. Ahora también para familias.",
+    "Siete habitaciones privadas con desayuno continental y vista al canal de Beagle, a pasos del centro de Ushuaia. Reservá online.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
