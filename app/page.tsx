@@ -17,6 +17,7 @@ const seasons = [
     name: "Verano",
     months: "Diciembre a marzo",
     photo: "Verano en el canal de Beagle",
+    src: "/images/verano.jpg",
     items: [
       "Navegación por el canal y la Isla de los Lobos",
       "Trekking a Laguna Esmeralda y Glaciar Martial",
@@ -29,6 +30,7 @@ const seasons = [
     name: "Invierno",
     months: "Junio a septiembre",
     photo: "Invierno en Cerro Castor",
+    src: "/images/invierno.jpg",
     items: [
       "Esquí y snowboard en Cerro Castor",
       "Trineos con perros y raquetas de nieve",
@@ -55,7 +57,7 @@ const reviews = [
     caption: "Huésped · Viajó sola",
   },
   {
-    text: "¡Muchas gracias, Andrés, por tu atención! Limpieza 10 puntos, un lugar muy bien ubicado, seguro y tranquilo. Desayuno abundante. Pasamos tres días excelentes, muy recomendable.",
+    text: "¡Muchas gracias, Bruno, por tu atención! Limpieza 10 puntos, un lugar muy bien ubicado, seguro y tranquilo. Desayuno abundante. Pasamos tres días excelentes, muy recomendable.",
     caption: "Huésped · Estadía de tres días",
   },
 ];
@@ -245,7 +247,13 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-2">
           {seasons.map((s) => (
             <article key={s.name} className="card overflow-hidden">
-              <Photo label={s.photo} rounded={false} className="h-72" sizes="(min-width: 768px) 50vw, 100vw" />
+              <Photo
+                label={s.photo}
+                src={s.src}
+                rounded={false}
+                className="h-72"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
               <div className="flex flex-col gap-4 p-7">
                 <div className="flex items-center gap-3">
                   <Icon name={s.icon} size={22} className="text-gold-dark" />
